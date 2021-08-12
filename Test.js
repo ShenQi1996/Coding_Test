@@ -5,13 +5,16 @@ window.addEventListener("load", () => {
     let answer = nums[0];
     let zero = false;
     let curr = 0;
-    for (let i = 1; i < nums.length - 1; i++) {
-      if (nums[i] == 0 || nums[i + 1] == 0) {
-        zero = true;
-      } else {
-        curr = Math.min(nums[i], nums[i + 1]);
-        answer = Math.min(answer, curr);
-        debugger;
+    if (nums.length == 2) {
+      return (answer = Math.min(nums[0], nums[1]));
+    } else {
+      for (let i = 1; i < nums.length - 1; i++) {
+        if (nums[i] == 0 || nums[i + 1] == 0) {
+          zero = true;
+        } else {
+          curr = Math.min(nums[i], nums[i + 1]);
+          answer = Math.min(answer, curr);
+        }
       }
     }
     if (zero == true) {
