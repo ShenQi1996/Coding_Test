@@ -1,6 +1,5 @@
 window.addEventListener("load", () => {
   // put code here
-
   // Find Minimum in Rotated Sorted Array
   // var findMin = function (nums) {
   //   let answer = nums[0];
@@ -23,72 +22,52 @@ window.addEventListener("load", () => {
   //   }
   //   return answer;
   // };
-
   // console.log(findMin([11, 13, 15, 17]));
-
   //Search in Rotated Sorted Array
-
   // to find the min point in a sorted array
-
   // var search = function (nums, target) {
   //   // [1, 3, 5] 0
   //   // Special case
-
   //   if (nums === null || nums.length === 0) {
   //     return -1;
   //   }
-
   //   // Left and right pointers in the array
-
   //   let left = 0;
   //   let right = nums.length - 1; // 2
-
   //   // First step is to find the pivot where the
   //   // array is rotated
-
   //   while (left < right) {
   //     // Middle pointer
-
   //     let middle = left + parseInt((right - left) / 2); // 0
-
   //     // If the element at the mid is greater than
   //     // the element at the right then we can say that
   //     // the array is rotated after middle index
-
   //     if (nums[middle] > nums[right]) {
   //       // 1 > 5
   //       left = middle + 1; // 4
   //     }
-
   //     // Else, the pivot is in the left part
   //     else {
   //       right = middle; // 0
   //     }
   //   }
-
   //   // After the above loop is completed, then the
   //   // left index will point to the pivot
-
   //   const pivot = left; // 0
   //   left = 0;
   //   right = nums.length - 1; // 6
-
   //   // Now we will find in which half of the array,
   //   // our target is present
-
   //   if (target >= nums[pivot] && target <= nums[right]) {
   //     // 5 >= 1
   //     left = pivot;
   //   } else {
   //     right = pivot; // 0
   //   }
-
   //   // Now perform normal binary search
-
   //   while (left <= right) {
   //     // 0 <= 0
   //     let middle = left + parseInt((right - left) / 2);
-
   //     if (nums[middle] === target) {
   //       return middle;
   //     } else if (target < nums[middle]) {
@@ -99,9 +78,7 @@ window.addEventListener("load", () => {
   //   }
   //   return -1;
   // };
-
   //matrix
-
   //   var setZeroes = function(matrix) {
   //     var solution = [];
   //     for(var i=0; i<matrix.length; ++i){ // step 1
@@ -122,31 +99,126 @@ window.addEventListener("load", () => {
   //         ++k;
   //     }
   // };
-
   // MAXsubArray
-  // function maxSubArray(nums) {
-  //   let max_so_far = 0;
-  //   let leftIndex = 0,
-  //   rightIndex = nums.length - 1,
-  //   len = nums.length;
-
-  //   for (let i = 0; i < len; i++) {
-  //       for (let j = i; j < len; j++) {
-  //           maxSum = 0;
-  //           for (let k = i; k <= j; k++) {
-  //               // console.log("i = "+i+", j = "+j+", k = "+k);
-  //               maxSum += nums[k];
-  //               if (max_so_far < maxSum) {
-  //                   leftIndex = i;
-  //                   max_so_far = maxSum;
-  //                   rightIndex = j;
-  //               }
-  //           }
+  //   var maxSubArray = function(nums) {
+  //     let answer = nums[0];
+  //     let curr_max = nums[0];
+  //     for(let i = 1 ; i < nums.length; i++){
+  //         curr_max = Math.max(nums[i] , nums[i] + curr_max);
+  //         answer = Math.max(answer, curr_max);
+  //     }
+  //     return answer;
+  // };
+  // productExceptSelf
+  //   var productExceptSelf = function(nums) {
+  //     const leftProducts = Array(nums.length);
+  //     const rightProducts = Array(nums.length);
+  //     leftProducts[0] = 1;
+  //     rightProducts[nums.length - 1] = 1;
+  //     for (let i = 1; i < nums.length; i++) {
+  //         leftProducts[i] = leftProducts[i-1] * nums[i-1];
+  //         rightProducts[nums.length - i - 1] = rightProducts[nums.length-i] * nums[nums.length - i];
+  //     }
+  //     const answer = Array(nums.length);
+  //     for(let i = 0; i < nums.length; i++) {
+  //         answer[i] = leftProducts[i] * rightProducts[i];
+  //     }
+  //     return answer;
+  // };
+  // TwoSum
+  // var twoSum = function(nums, target) {
+  //   //brute force O(n2), nested for loop to look for k = target - current
+  //   //optimize solution using hash table: {value: index}
+  //   const map = new Map(); // {value: index}
+  //   for(let i = 0; i < nums.length; i++){
+  //       const need = target - nums[i];
+  //       if(map.has(need) && map.get(need) !== i){ //if need exists in map and is not current index
+  //           return [i, map.get(need)];
+  //       }
+  //       map.set(nums[i], i);
+  //   }
+  // };
+  // Max Profit
+  // var maxProfit = function(prices) {
+  //   let min = 999999;
+  //   let maxProfit = 0
+  //   for(let i = 0; i < prices.length; i++){
+  //       if(prices[i] < min){
+  //           min = prices[i]
+  //       }else{
+  //           maxProfit = Math.max(maxProfit, prices[i] - min)
   //       }
   //   }
-
-  //   return max_so_far;
+  //   return maxProfit;
+  // };
+  //Longest Substring Without Repeating Characters
+  // var lengthOfLongestSubstring = function(s) {
+  //   if (!s.length) return 0;
+  //   const scope = [s[0]];
+  //   let max = 1;
+  //   for (let i=1; i<s.length; i++){
+  //       if (!scope.includes(s[i])){
+  //           scope.push(s[i]);
+  //           max = Math.max(max, scope.length)
+  //       } else {
+  //           scope.shift();
+  //           i--;
+  //       }
   //   }
-
-  console.log(search);
+  //   return max;
+  // };
+  //Spiral Matrix
+  // var spiralOrder = function(matrix) {
+  //   let result = []
+  //   while(matrix.length) {
+  //         console.log("size is before " + matrix.length)
+  //       let top = matrix.shift()
+  //       let bottom = (matrix.pop() || []).reverse()
+  //       console.log("Top is "+top)
+  //       console.log("Bottom is " + bottom)
+  //       let left = []
+  //       let right = []
+  //       console.log("size is " + matrix.length)
+  //       for(let i=0; i<matrix.length; i++) {
+  //           if(matrix[i].length > 0) {
+  //               right.push(matrix[i].pop())
+  //           }
+  //           if(matrix[i].length > 0) {
+  //               left.unshift(matrix[i].shift())
+  //           }
+  //       }
+  //       result.push(...top, ...right, ...bottom, ...left)
+  //   }
+  //   return result
+  // Reverse Linked List
+  // var reverseList = function(head) {
+  //   let next = null;
+  //   let prev = null;
+  //   let curr = head
+  //   while(curr != null){
+  //       next = curr.next;
+  //       curr.next = prev;
+  //       prev = curr;
+  //       curr = next;
+  //   }
+  //   return prev
+  // };
+  //Maximum Depth of Binary Tree
+  // var maxDepth = function(root) {
+  //   if(!root) return 0;
+  //   var queue = [root];
+  //   var layers = 0;
+  //   var node = root;
+  //   while(queue.length) {
+  //       var curLevelLen = queue.length;
+  //       for(var i = 0; i < curLevelLen; i++) {
+  //           node = queue.shift();
+  //           if(node.left) queue.push(node.left);
+  //           if(node.right) queue.push(node.right);
+  //       }
+  //       layers++;
+  //   }
+  //   return layers;
+  // };
+  //learn how to use react JS
 });
