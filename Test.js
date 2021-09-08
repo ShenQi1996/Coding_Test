@@ -220,5 +220,21 @@ window.addEventListener("load", () => {
   //   }
   //   return layers;
   // };
-  //learn how to use react JS
+  //Maximum Depth of Binary Tree
+
+  var maxDepth = function (root) {
+    if (root == null) return 0;
+
+    //travel to the end of all branches in the tree, therby end up with 0 for depth
+    //check left side of node
+    let leftMax = maxDepth(root.left);
+    //check right side node
+    let rightMax = maxDepth(root.right);
+
+    //as call stack updates to the first function call, and gets closer to head node, depth increments by 1
+    //Math max is to update the highest depth from either side of the node
+    let depth = Math.max(leftMax, rightMax);
+
+    return depth + 1;
+  };
 });
