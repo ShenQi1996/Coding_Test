@@ -1,4 +1,19 @@
 window.addEventListener("load", () => {
+  // TwoSum
+  var twoSum = function (nums, target) {
+    //brute force O(n2), nested for loop to look for k = target - current
+    //optimize solution using hash table: {value: index}
+    const map = new Map(); // {value: index}
+    for (let i = 0; i < nums.length; i++) {
+      const need = target - nums[i];
+      if (map.has(need) && map.get(need) !== i) {
+        //if need exists in map and is not current index
+        return [i, map.get(need)];
+      }
+      map.set(nums[i], i);
+    }
+  };
+
   // put code here
   // Find Minimum in Rotated Sorted Array
   // var findMin = function (nums) {
@@ -23,6 +38,43 @@ window.addEventListener("load", () => {
   //   return answer;
   // };
   // console.log(findMin([11, 13, 15, 17]));
+
+  // Output: num (min)
+  // Input: array (nums)
+  // Constraints: O(log n) time
+  // Edge Cases: array is fully/not rotated, 1-length arrays
+
+  // Approach
+  // Track left pointer
+  // Track right pointer
+  // While left pointer < right pointer:
+  // a) Get the midpoint between left and right
+  // b) If num at mid is greater than num at right pointer, increment left pointer because that means the break is at or after right pointer ( we haven't reached it yet)
+  // c) Otherwise, move right pointer to mid
+  // Return num at left pointer
+  // Time Complexity
+  // O(log n) because we're often slicing the search space in half on each iteration.
+
+  var findMin = function (nums) {
+    let leftPointer = 0;
+    let rightPointer = nums.length - 1;
+    while (leftPointer < rightPointer) {
+      // keep going until the pointers converge
+      const midPointer = Math.floor((leftPointer + rightPointer) / 2);
+      const [leftNumber, midNumber, rightNumber] = [
+        nums[leftPointer],
+        nums[midPointer],
+        nums[rightPointer],
+      ];
+      if (midNumber > rightNumber) {
+        leftPointer += 1;
+      } else {
+        rightPointer = midPointer;
+      }
+    }
+    return nums[leftPointer];
+  };
+
   //Search in Rotated Sorted Array
   // to find the min point in a sorted array
   // var search = function (nums, target) {
