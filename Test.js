@@ -130,6 +130,36 @@ window.addEventListener("load", () => {
   //   }
   //   return -1;
   // };
+
+  var search = function (nums, target) {
+    let left = 0
+    let right = nums.length -1
+    
+    while(left <= right){
+        let m = Math.floor((left + right) / 2)
+        if(target == nums[m]){
+            return m;
+        }
+        // left sorted portion
+        if(nums[left]  <= nums[m]){
+            if(target > nums[m] || target < nums[left]){
+                left = m + 1;
+            }
+            else{
+                right = m - 1
+            }
+        // right sorted portion
+        }else{
+            if(target < nums[m] || target > nums[right] ){
+                right = m -1;
+             }else{
+                 left = m + 1
+             }
+        }
+    }
+    return -1 
+};
+
   //matrix
   //   var setZeroes = function(matrix) {
   //     var solution = [];
