@@ -132,35 +132,34 @@ window.addEventListener("load", () => {
   // };
 
   var search = function (nums, target) {
-    let left = 0
-    let right = nums.length -1
-    
-    while(left <= right){
-        let m = Math.floor((left + right) / 2)
-        if(target == nums[m]){
-            return m;
-        }
-        // left sorted portion
-        if(nums[left]  <= nums[m]){
-            if(target > nums[m] || target < nums[left]){
-                left = m + 1;
-            }
-            else{
-                right = m - 1
-            }
-        // right sorted portion
-        }else{
-            if(target < nums[m] || target > nums[right] ){
-                right = m -1;
-             }else{
-                 left = m + 1
-             }
-        }
-    }
-    return -1 
-};
+    let left = 0;
+    let right = nums.length - 1;
 
-  //matrix
+    while (left <= right) {
+      let m = Math.floor((left + right) / 2);
+      if (target == nums[m]) {
+        return m;
+      }
+      // left sorted portion
+      if (nums[left] <= nums[m]) {
+        if (target > nums[m] || target < nums[left]) {
+          left = m + 1;
+        } else {
+          right = m - 1;
+        }
+        // right sorted portion
+      } else {
+        if (target < nums[m] || target > nums[right]) {
+          right = m - 1;
+        } else {
+          left = m + 1;
+        }
+      }
+    }
+    return -1;
+  };
+
+  //Set Matrix Zeroes
   //   var setZeroes = function(matrix) {
   //     var solution = [];
   //     for(var i=0; i<matrix.length; ++i){ // step 1
@@ -181,7 +180,35 @@ window.addEventListener("load", () => {
   //         ++k;
   //     }
   // };
-  // MAXsubArray
+
+  var setZeroes = function (matrix) {
+    //create a copy of matrix
+    let r = new Array(matrix.length);
+    let c = new Array(matrix[0].length);
+    for (let i = 0; i < matrix.length; i++) {
+      for (let j = 0; j < matrix[i].length; j++) {
+        if (matrix[i][j] == 0) {
+          r[i] = true;
+          c[j] = true;
+        }
+      }
+    }
+
+    for (let i = 0; i < r.length; i++) {
+      for (let j = 0; j < c.length; j++) {
+        if (r[i] == true && matrix[i][j] != 0) {
+          matrix[i][j] = 0;
+        }
+        if (c[j] && matrix[i][j] != 0) {
+          matrix[i][j] = 0;
+        }
+      }
+    }
+
+    return matrix;
+  };
+
+  //Maximum Subarray
   //   var maxSubArray = function(nums) {
   //     let answer = nums[0];
   //     let curr_max = nums[0];
@@ -191,6 +218,20 @@ window.addEventListener("load", () => {
   //     }
   //     return answer;
   // };
+
+  var maxSubArray = function (nums) {
+    let curMax = nums[0];
+    let m = nums[0];
+    for (let i = 1; i < nums.length; i++) {
+      if (curMax < 0) {
+        curMax = 0;
+      }
+      curMax += nums[i];
+      m = Math.max(m, curMax);
+    }
+    return m;
+  };
+
   // productExceptSelf
   //   var productExceptSelf = function(nums) {
   //     const leftProducts = Array(nums.length);
