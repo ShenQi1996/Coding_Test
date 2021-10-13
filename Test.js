@@ -232,48 +232,38 @@ window.addEventListener("load", () => {
     return m;
   };
 
-  // productExceptSelf
-  //   var productExceptSelf = function(nums) {
-  //     const leftProducts = Array(nums.length);
-  //     const rightProducts = Array(nums.length);
-  //     leftProducts[0] = 1;
-  //     rightProducts[nums.length - 1] = 1;
-  //     for (let i = 1; i < nums.length; i++) {
-  //         leftProducts[i] = leftProducts[i-1] * nums[i-1];
-  //         rightProducts[nums.length - i - 1] = rightProducts[nums.length-i] * nums[nums.length - i];
-  //     }
-  //     const answer = Array(nums.length);
-  //     for(let i = 0; i < nums.length; i++) {
-  //         answer[i] = leftProducts[i] * rightProducts[i];
-  //     }
-  //     return answer;
-  // };
-  // TwoSum
-  // var twoSum = function(nums, target) {
-  //   //brute force O(n2), nested for loop to look for k = target - current
-  //   //optimize solution using hash table: {value: index}
-  //   const map = new Map(); // {value: index}
-  //   for(let i = 0; i < nums.length; i++){
-  //       const need = target - nums[i];
-  //       if(map.has(need) && map.get(need) !== i){ //if need exists in map and is not current index
-  //           return [i, map.get(need)];
-  //       }
-  //       map.set(nums[i], i);
-  //   }
-  // };
-  // Max Profit
-  // var maxProfit = function(prices) {
-  //   let min = 999999;
-  //   let maxProfit = 0
-  //   for(let i = 0; i < prices.length; i++){
-  //       if(prices[i] < min){
-  //           min = prices[i]
-  //       }else{
-  //           maxProfit = Math.max(maxProfit, prices[i] - min)
-  //       }
-  //   }
-  //   return maxProfit;
-  // };
+  // Product of Array Except Self
+  var productExceptSelf = function (nums) {
+    const leftProducts = Array(nums.length);
+    const rightProducts = Array(nums.length);
+    leftProducts[0] = 1;
+    rightProducts[nums.length - 1] = 1;
+    for (let i = 1; i < nums.length; i++) {
+      leftProducts[i] = leftProducts[i - 1] * nums[i - 1];
+      rightProducts[nums.length - i - 1] =
+        rightProducts[nums.length - i] * nums[nums.length - i];
+    }
+    const answer = Array(nums.length);
+    for (let i = 0; i < nums.length; i++) {
+      answer[i] = leftProducts[i] * rightProducts[i];
+    }
+    return answer;
+  };
+
+  //  Best Time to Buy and Sell Stock
+  var maxProfit = function (prices) {
+    let min = 999999;
+    let maxProfit = 0;
+    for (let i = 0; i < prices.length; i++) {
+      if (prices[i] < min) {
+        min = prices[i];
+      } else {
+        maxProfit = Math.max(maxProfit, prices[i] - min);
+      }
+    }
+    return maxProfit;
+  };
+
   //Longest Substring Without Repeating Characters
   // var lengthOfLongestSubstring = function(s) {
   //   if (!s.length) return 0;
