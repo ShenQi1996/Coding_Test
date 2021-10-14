@@ -280,6 +280,23 @@ window.addEventListener("load", () => {
   //   }
   //   return max;
   // };
+
+  var lengthOfLongestSubstring = function (s) {
+    if (s.length == 0) return 0;
+    let max = 1;
+    let m = [s[0]];
+    for (let i = 1; i < s.length; i++) {
+      if (!m.includes(s[i])) {
+        m.push(s[i]);
+      } else {
+        m.shift();
+        i--;
+      }
+      max = Math.max(max, m.length);
+    }
+    return max;
+  };
+
   //Spiral Matrix
   // var spiralOrder = function(matrix) {
   //   let result = []
