@@ -330,6 +330,51 @@ window.addEventListener("load", () => {
     return answer;
   };
 
+  // The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this:
+  //(you may want to display this pattern in a fixed font for better legibility)
+  // P   A   H   N
+  // A P L S I I G
+  // Y   I   R
+  // And then read line by line: "PAHNAPLSIIGYIR"
+
+  const formatStream = function (stream, numRows) {
+    if (numRows === 1) {
+      return stream;
+    }
+    let answer = [];
+    let count = 0;
+    let down = true;
+    while (count < stream.length) {
+      answer.push([]);
+      let i = 0;
+      while (i < numRows) {
+        if (down) {
+          answer[answer.length - 1].push(stream[count]);
+          count++;
+        } else {
+          if (i === 0) {
+            answer[answer.length - 1].push(null);
+          } else if (i === numRows - 1) {
+            answer[answer.length - 1].unshift(null);
+          } else {
+            answer[answer.length - 1].unshift(stream[count]);
+            count++;
+          }
+        }
+        i++;
+      }
+      down = !down;
+    }
+    let output = [];
+    for (let i = 0; i < numRows; i++) {
+      for (let j = 0; j < answer.length; j++) {
+        output.push(answer[j][i]);
+      }
+    }
+    // console.log (output.join(""));
+    return output.join("");
+  };
+
   //Spiral Matrix
   // var spiralOrder = function(matrix) {
   //   let result = []
